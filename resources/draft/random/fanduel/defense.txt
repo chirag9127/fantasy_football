@@ -1,0 +1,33 @@
+player,salary,team,pos,opp,ceil,floor,fpts
+"Carolina Panthers",4700,CAR,D,DEN,,,8.82
+"Denver Broncos",4700,DEN,D,CAR,,,8.24
+"Minnesota Vikings",4600,MIN,D,TEN,,,7.85
+"Tennessee Titans",4100,TEN,D,MIN,,,6.78
+"Cleveland Browns",4000,CLE,D,PHI,,,6.66
+"Philadelphia Eagles",4800,PHI,D,CLE,,,8.64
+"Green Bay Packers",4300,GBP,D,JAC,,,9.08
+"Jacksonville Jaguars",4100,JAC,D,GBP,,,6.5
+"San Diego Chargers",4100,SDC,D,KCC,,,5.45
+"Kansas City Chiefs",5100,KCC,D,SDC,,,10.16
+"Chicago Bears",4300,CHI,D,HOU,,,6.14
+"Houston Texans",4900,HOU,D,CHI,,,9.41
+"Oakland Raiders",4300,OAK,D,NOS,,,5.86
+"New Orleans Saints",4000,NOS,D,OAK,,,6.82
+"Tampa Bay Buccaneers",4200,TBB,D,ATL,,,7.88
+"Atlanta Falcons",4200,ATL,D,TBB,,,6.82
+"Buffalo Bills",4500,BUF,D,BAL,,,7.48
+"Baltimore Ravens",4300,BAL,D,BUF,,,6.6
+"Cincinnati Bengals",4600,CIN,D,NYJ,,,8.54
+"New York Jets",4500,NYJ,D,CIN,,,6.75
+"Miami Dolphins",4200,MIA,D,SEA,,,5.27
+"Seattle Seahawks",5000,SEA,D,MIA,,,10.9
+"New York Giants",4400,NYG,D,DAL,,,7.3
+"Dallas Cowboys",4400,DAL,D,NYG,,,7.54
+"Detroit Lions",4300,DET,D,IND,,,8.23
+"Indianapolis Colts",4400,IND,D,DET,,,8.65
+"New England Patriots",4400,NEP,D,ARI,,,7.08
+"Arizona Cardinals",5000,ARI,D,NEP,,,8.68
+"Pittsburgh Steelers",4600,PIT,D,WAS,,,8.58
+"Washington Redskins",4200,WAS,D,PIT,,,6.9
+"St. Louis Rams",4600,LAR,D,SFO,,,8.97
+"San Francisco 49ers",4400,SFO,D,LAR,,,8.49

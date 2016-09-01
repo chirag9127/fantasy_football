@@ -1,0 +1,35 @@
+player,salary,team,pos,opp,ceil,floor,fpts
+"Cam Newton",8600,CAR,QB,DEN,,,19.7
+"Trevor Siemian",6000,DEN,QB,CAR,,,15.28
+"Marcus Mariota",7500,TEN,QB,MIN,,,18.49
+"Shaun Hill",5000,MIN,QB,TEN,25.36,0,12.68
+"Robert Griffin III",6900,CLE,QB,PHI,,,18.26
+"Terrelle Pryor",4900,CLE,WR,PHI,,,5.95
+"Sam Bradford",6900,PHI,QB,CLE,,,15.53
+"Aaron Rodgers",9000,GBP,QB,JAC,,,22.91
+"Blake Bortles",8400,JAC,QB,GBP,,,18.73
+"Philip Rivers",7300,SDC,QB,KCC,,,16.73
+"Alex Smith",7000,KCC,QB,SDC,,,17.34
+"Jay Cutler",6700,CHI,QB,HOU,,,15.63
+"Brock Osweiler",7100,HOU,QB,CHI,,,16.21
+"Drew Brees",8700,NOS,QB,OAK,,,21.52
+"Derek Carr",7700,OAK,QB,NOS,,,19.59
+"Jameis Winston",7500,TBB,QB,ATL,,,21.44
+"Matt Ryan",7600,ATL,QB,TBB,,,17.32
+"Tyrod Taylor",7200,BUF,QB,BAL,,,18.51
+"Joe Flacco",7000,BAL,QB,BUF,,,15.42
+"Andy Dalton",7700,CIN,QB,NYJ,,,17.52
+"Ryan Fitzpatrick",7300,NYJ,QB,CIN,,,17.11
+"Ryan Tannehill",6400,MIA,QB,SEA,,,14.63
+"Russell Wilson",8500,SEA,QB,MIA,,,21.49
+"Eli Manning",7200,NYG,QB,DAL,,,18.44
+"Dak Prescott",5000,DAL,QB,NYG,,,18.73
+"Matthew Stafford",7400,DET,QB,IND,,,18.28
+"Andrew Luck",8700,IND,QB,DET,,,21.41
+"Carson Palmer",7900,ARI,QB,NEP,,,19.28
+"Jimmy Garoppolo",6900,NEP,QB,ARI,,,17.33
+"Ben Roethlisberger",8500,PIT,QB,WAS,,,19.83
+"Kirk Cousins",7800,WAS,QB,PIT,,,18.31
+"Blaine Gabbert",6200,SFO,QB,LAR,,,14.63
+"Jared Goff",6800,LAR,QB,SFO,,,12.78
+"Case Keenum",6000,LAR,QB,SFO,21.2868,4.9932,13.14
