@@ -44,13 +44,34 @@ def load_all_projections():
     return all_projections
 
 
+def load_eligible_players_for_slate(week, slatefile):
+    eligible_players = {}
+    with open('../resources/{0}/{1}'.format(week, slatefile)) as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row['Team'] == 'SF':
+                row['Team'] = 'SFO'
+            row['player'] = '{0} {1}'.format(row['First Name'],
+                                             row['Last Name'])
+            key = '{0}_{1}'.format(
+                row['player'].replace(' ', '_'), row['Team'])
+            eligible_players[key] = row
+    return eligible_players
+
+
+'''
 def get_projections_by_position(teams=['MIN', 'MIA', 'CAR', 'ATL', 'OAK',
                                        'CIN', 'NYJ', 'DEN', 'BAL', 'NYG',
                                        'NEP', 'DET', 'TEN', 'DAL', 'SEA',
                                        'CLE', 'PIT', 'CHI', 'HOU', 'WAS',
                                        'JAC', 'KCC', 'BUF', 'SFO', 'SDC',
                                        'IND', 'ARI', 'TBB', 'LAR', 'NOS']):
+'''
+
+
+def get_projections_by_position(week, slatefile):
     projections = load_all_projections()
+    eligible_players = load_eligible_players_for_slate(week, slatefile)
     qbs = []
     rbs = []
     wrs = []
@@ -58,16 +79,22 @@ def get_projections_by_position(teams=['MIN', 'MIA', 'CAR', 'ATL', 'OAK',
     defense = []
     kicker = []
     for key, val in projections.iteritems():
-        if val['pos'] == 'QB' and val['team'] in teams:
+        if val['pos'] == 'QB' and key in eligible_players and \
+                eligible_players[key]['Injury Indicator'] == '':
             qbs.append(val)
-        elif val['pos'] == 'RB' and val['team'] in teams:
+        elif val['pos'] == 'RB' and key in eligible_players and \
+                eligible_players[key]['Injury Indicator'] == '':
             rbs.append(val)
-        elif val['pos'] == 'WR' and val['team'] in teams:
+        elif val['pos'] == 'WR' and key in eligible_players and \
+                eligible_players[key]['Injury Indicator'] == '':
             wrs.append(val)
-        elif val['pos'] == 'TE' and val['team'] in teams:
+        elif val['pos'] == 'TE' and key in eligible_players and \
+                eligible_players[key]['Injury Indicator'] == '':
             tes.append(val)
-        elif val['pos'] == 'D' and val['team'] in teams:
+        elif val['pos'] == 'D' and key in eligible_players and \
+                eligible_players[key]['Injury Indicator'] == '':
             defense.append(val)
-        elif val['pos'] == 'K' and val['team'] in teams:
+        elif val['pos'] == 'K' and key in eligible_players and \
+                eligible_players[key]['Injury Indicator'] == '':
             kicker.append(val)
     return qbs, rbs, wrs, tes, defense, kicker

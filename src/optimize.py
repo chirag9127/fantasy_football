@@ -10,8 +10,9 @@ def lookup(dic, key, *keys):
     return dic.get(key, 0)
 
 
-def create_variables(teams):
-    qbs, rbs, wrs, tes, defense, kicker = get_projections_by_position(teams)
+def create_variables(week, slatefile):
+    qbs, rbs, wrs, tes, defense, kicker = get_projections_by_position(
+        week, slatefile)
     qbvs, rbvs, wrvs, tevs, defvs, kickervs = [], [], [], [], [], []
     for qb in qbs:
         qbvs.append((qb['player'], {'var':
@@ -41,10 +42,12 @@ def create_variables(teams):
     return qbvs, rbvs, wrvs, tevs, kickervs, defvs
 
 
-def formulate_problem(teams, maximizing_variables=['floor', 'projections']):
+def formulate_problem(week, slatefile,
+                      maximizing_variables=['floor', 'projections']):
     print 'Maximizing: ', ' '.join(maximizing_variables)
     prob = LpProblem("Fanduel selection problem", LpMaximize)
-    qbvs, rbvs, wrvs, tevs, kickervs, defvs = create_variables(teams)
+    qbvs, rbvs, wrvs, tevs, kickervs, defvs = create_variables(week,
+                                                               slatefile)
     all_players = qbvs + rbvs + wrvs + tevs + kickervs + defvs
 
     if 'floor' in maximizing_variables and \
@@ -94,6 +97,14 @@ def formulate_problem(teams, maximizing_variables=['floor', 'projections']):
             print(v.name, "=", v.varValue)
 
 
+def generate_optimal_lineup(week='week4',
+                            slatefile='fanduel_mon_thursday_slate.csv'):
+    formulate_problem(week, slatefile)
+    formulate_problem(week, slatefile, ['floor'])
+    formulate_problem(week, slatefile, ['projections'])
+
+
+'''
 def generate_optimal_lineup(week='week4'):
     with open('../resources/{0}/games.json'.format(week)) as f:
         for line in f:
@@ -105,6 +116,7 @@ def generate_optimal_lineup(week='week4'):
         formulate_problem(teams, ['floor'])
         formulate_problem(teams, ['projections'])
         print '\n\n\n'
+'''
 
 
 generate_optimal_lineup()
