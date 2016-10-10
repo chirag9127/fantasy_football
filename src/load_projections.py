@@ -2,7 +2,7 @@ import csv
 import json
 
 
-def load_projections(week='week4', player_type='qb'):
+def load_projections(week, player_type):
     projections = {}
     with open(
             '../resources/{0}/fanduel_{1}.csv'.format(week, player_type)) as f:
@@ -14,7 +14,7 @@ def load_projections(week='week4', player_type='qb'):
     return projections
 
 
-def load_consistency_projections(week='week4'):
+def load_consistency_projections(week):
     consistency_projections = {}
     with open('../resources/{0}/fanduel_consistency.csv'.format(week)) as f:
         for line in f:
@@ -27,16 +27,16 @@ def load_consistency_projections(week='week4'):
     return consistency_projections
 
 
-def load_all_projections():
+def load_all_projections(week):
     all_projections = {}
-    all_projections.update(load_projections(player_type='qb'))
-    all_projections.update(load_projections(player_type='rb'))
-    all_projections.update(load_projections(player_type='wr'))
-    all_projections.update(load_projections(player_type='te'))
-    all_projections.update(load_projections(player_type='kicker'))
-    all_projections.update(load_projections(player_type='defense'))
+    all_projections.update(load_projections(week, player_type='qb'))
+    all_projections.update(load_projections(week, player_type='rb'))
+    all_projections.update(load_projections(week, player_type='wr'))
+    all_projections.update(load_projections(week, player_type='te'))
+    all_projections.update(load_projections(week, player_type='kicker'))
+    all_projections.update(load_projections(week, player_type='defense'))
 
-    consistency_projections = load_consistency_projections()
+    consistency_projections = load_consistency_projections(week)
     for key, item in all_projections.iteritems():
         if key in consistency_projections:
             all_projections[key]['consistency'] = consistency_projections[key]
@@ -59,18 +59,8 @@ def load_eligible_players_for_slate(week, slatefile):
     return eligible_players
 
 
-'''
-def get_projections_by_position(teams=['MIN', 'MIA', 'CAR', 'ATL', 'OAK',
-                                       'CIN', 'NYJ', 'DEN', 'BAL', 'NYG',
-                                       'NEP', 'DET', 'TEN', 'DAL', 'SEA',
-                                       'CLE', 'PIT', 'CHI', 'HOU', 'WAS',
-                                       'JAC', 'KCC', 'BUF', 'SFO', 'SDC',
-                                       'IND', 'ARI', 'TBB', 'LAR', 'NOS']):
-'''
-
-
 def get_projections_by_position(week, slatefile):
-    projections = load_all_projections()
+    projections = load_all_projections(week)
     eligible_players = load_eligible_players_for_slate(week, slatefile)
     qbs = []
     rbs = []
