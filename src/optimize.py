@@ -51,11 +51,11 @@ def formulate_problem(week, slatefile,
 
     if 'floor' in maximizing_variables and \
             'projections' in maximizing_variables:
-        prob += lpSum([item[1]['var']*(float(item[1]['data']['fpts']) +
+        prob += lpSum([item[1]['var']*(float(item[1]['data']['fpts']) *
                                        lookup(item[1]['data'],
                                               'consistency', 'floor'))
                        for item in all_players]), \
-            "maximizing floor and projections"
+            "maximizing floor times projections"
     elif 'floor' in maximizing_variables:
         prob += lpSum([item[1]['var'] * lookup(item[1]['data'],
                                                'consistency', 'floor')
@@ -107,11 +107,10 @@ def formulate_problem_with_floor_constraint(week, slatefile):
                    for item in all_players]), "maximizing projections"
 
     # add floor constraint
-    '''
     prob += lpSum([item[1]['var'] * lookup(item[1]['data'],
                                            'consistency', 'floor')
-                   for item in all_players]) >= 90, "maximizing floor"
-    '''
+                   for item in all_players]) >= 80, "maximizing floor"
+
     # add salary constraint
     prob += lpSum([item[1]['var'] * float(item[1]['data']['salary'])
                    for item in all_players]) <= 60000.0, "Salary constraint"
@@ -149,4 +148,4 @@ def generate_optimal_lineup(week, slatefile):
     formulate_problem_with_floor_constraint(week, slatefile)
 
 
-generate_optimal_lineup('week5', 'fanduel_sunday_830.csv')
+generate_optimal_lineup('week6', 'fanduel_mon_thu_slate.csv')

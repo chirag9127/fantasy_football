@@ -44,13 +44,25 @@ def load_all_projections(week):
     return all_projections
 
 
+team_conversion = {
+    'SF': 'SFO',
+    'TB': 'TBB',
+    'SD': 'SDC',
+    'LA': 'LAR',
+    'KC': 'KCC',
+    'GB': 'GBP',
+    'NO': 'NOS',
+    'NE': 'NEP'
+}
+
+
 def load_eligible_players_for_slate(week, slatefile):
     eligible_players = {}
     with open('../resources/{0}/{1}'.format(week, slatefile)) as f:
         reader = csv.DictReader(f)
         for row in reader:
-            if row['Team'] == 'SF':
-                row['Team'] = 'SFO'
+            if row['Team'] in team_conversion:
+                row['Team'] = team_conversion[row['Team']]
             row['player'] = '{0} {1}'.format(row['First Name'],
                                              row['Last Name'])
             key = '{0}_{1}'.format(
