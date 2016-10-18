@@ -102,8 +102,6 @@ def formulate_problem_with_floor_constraint(week, slatefile):
     qbvs, rbvs, wrvs, tevs, kickervs, defvs = create_variables(week,
                                                                slatefile)
     all_players = qbvs + rbvs + wrvs + tevs + kickervs + defvs
-    for qb in qbvs:
-        print qb
 
     prob += lpSum([item[1]['var'] * float(item[1]['data']['fpts'])
                    for item in all_players]), "maximizing projections"
@@ -143,11 +141,61 @@ def formulate_problem_with_floor_constraint(week, slatefile):
             print(v.name, "=", v.varValue)
 
 
+def formulate_problem_with_points_per_dollar(week, slatefile):
+    print 'Maximizing points/dollar'
+    prob = LpProblem("Fanduel selection problem", LpMaximize)
+    qbvs, rbvs, wrvs, tevs, kickervs, defvs = create_variables(week,
+                                                               slatefile)
+    all_players = qbvs + rbvs + wrvs + tevs + kickervs + defvs
+
+    prob += lpSum([item[1]['var'] *
+                   (float(item[1]['data']['fpts']) /
+                    float(item[1]['data']['salary']))
+                   for item in all_players]), "maximizing projections"
+
+    # add floor constraint
+    '''
+    prob += lpSum([item[1]['var'] * lookup(item[1]['data'],
+                                           'consistency', 'floor')
+                   for item in all_players]) >= 80, "maximizing floor"
+    '''
+
+    # add salary constraint
+    prob += lpSum([item[1]['var'] * float(item[1]['data']['salary'])
+                   for item in all_players]) <= 60000.0, "Salary constraint"
+
+    # qb constraint
+    prob += lpSum([item[1]['var'] for item in qbvs]) == 1, "qb constraint"
+
+    # rb constraint
+    prob += lpSum([item[1]['var'] for item in rbvs]) == 2, "rb constraint"
+
+    # wr constraint
+    prob += lpSum([item[1]['var'] for item in wrvs]) == 3, "wr constraint"
+
+    # te constraint
+    prob += lpSum([item[1]['var'] for item in tevs]) == 1, "te constraint"
+
+    # de constraint
+    prob += lpSum([item[1]['var'] for item in defvs]) == 1, "def constraint"
+
+    # kicker constraint
+    prob += lpSum([item[1]['var'] for item in kickervs]) == 1, "ki constraint"
+
+    prob.solve()
+
+    print "Status:", LpStatus[prob.status]
+    for v in prob.variables():
+        if v.varValue == 1:
+            print(v.name, "=", v.varValue)
+
+
 def generate_optimal_lineup(week, slatefile):
     formulate_problem(week, slatefile)
     formulate_problem(week, slatefile, ['floor'])
     formulate_problem(week, slatefile, ['projections'])
     formulate_problem_with_floor_constraint(week, slatefile)
+    formulate_problem_with_points_per_dollar(week, slatefile)
 
 
-generate_optimal_lineup('week6', 'fanduel_4pm_express.csv')
+generate_optimal_lineup('week6', 'fanduel_sunday_1pm.csv')

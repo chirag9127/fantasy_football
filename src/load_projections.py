@@ -23,6 +23,8 @@ def load_consistency_projections(week):
     for row in rows:
         key = '{0}_{1}'.format(
             row['player'].replace(' ', '_'), row['team'])
+        if row['gp'] <= 2:
+            row['floor'] = 0
         consistency_projections[key] = row
     return consistency_projections
 

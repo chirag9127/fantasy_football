@@ -1,0 +1,31 @@
+player,salary,team,pos,opp,ceil,floor,fpts
+"Kansas City Chiefs",4500,KCC,D,OAK,,,7.12
+"Oakland Raiders",4600,OAK,D,KCC,,,6.71
+"Tennessee Titans",4600,TEN,D,CLE,,,10.14
+"Cleveland Browns",4000,CLE,D,TEN,,,8.27
+"San Francisco 49ers",4400,SFO,D,BUF,,,6.01
+"Buffalo Bills",4700,BUF,D,SFO,,,10.92
+"Atlanta Falcons",4500,ATL,D,SEA,,,6.12
+"Seattle Seahawks",4800,SEA,D,ATL,,,9.46
+"New York Jets",4000,NYJ,D,ARI,,,4.97
+"Arizona Cardinals",5400,ARI,D,NYJ,,,12.06
+"Houston Texans",4200,HOU,D,IND,,,8.39
+"Indianapolis Colts",4300,IND,D,HOU,,,5.52
+"Dallas Cowboys",4300,DAL,D,GBP,,,4.94
+"Green Bay Packers",4500,GBP,D,DAL,,,8.38
+"Detroit Lions",4300,DET,D,LAR,,,9.23
+"Los Angeles Rams",4700,LAR,D,DET,,,7.82
+"Pittsburgh Steelers",4300,PIT,D,MIA,,,8.34
+"Miami Dolphins",4400,MIA,D,PIT,,,6.3
+"New England Patriots",4400,NEP,D,CIN,,,10.03
+"Cincinnati Bengals",5100,CIN,D,NEP,,,5.76
+"Denver Broncos",5000,DEN,D,SDC,,,10.34
+"San Diego Chargers",4100,SDC,D,DEN,,,6.08
+"Philadelphia Eagles",4400,PHI,D,WAS,,,9.06
+"Washington Redskins",4400,WAS,D,PHI,,,6.2
+"Carolina Panthers",4700,CAR,D,NOS,,,7.43
+"New Orleans Saints",4100,NOS,D,CAR,,,3.72
+"Chicago Bears",4300,CHI,D,JAC,,,6.27
+"Jacksonville Jaguars",4300,JAC,D,CHI,,,7.81
+"Baltimore Ravens",4800,BAL,D,NYG,,,8.53
+"New York Giants",4400,NYG,D,BAL,,,7.75

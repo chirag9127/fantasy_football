@@ -36,4 +36,4 @@ def download_weekly_projections(week):
         week, 'fanduel_kicker.csv')
 
 
-download_weekly_projections('week6')
+download_weekly_projections('week7')
