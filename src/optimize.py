@@ -12,6 +12,7 @@ def product(list_floats):
         ret_val *= float(f)
     return ret_val
 
+
 class PlayerVariable(object):
 
     def __init__(self, pos, data):
@@ -39,6 +40,7 @@ class PlayerVariable(object):
 
 POSITIONS = [('qb', 1), ('rb', 2), ('wr', 3), ('te', 1), ('def', 1), ('k', 1)]
 POSITION_ORDERS = {POSITIONS[i][0]: i for i in range(len(POSITIONS))}
+
 
 class Lineup(object):
 
@@ -127,20 +129,42 @@ def formulate(all_players, maximizing, constraints=list()):
 def generate_optimal_lineup(week, slatefile):
     d = defaultdict(list)
     all_players = create_variables(week, slatefile)
-    d[formulate(all_players, [fpts, floor])].append('maximizing projection * floor')
+    d[formulate(all_players, [fpts, floor])].append(
+        'maximizing projection * floor')
     d[formulate(all_players, [floor])].append('maximizing floor')
     d[formulate(all_players, [fpts])].append('maximizing projection')
-    d[formulate(all_players, [fpts], [total_floor_constraint_func(80)])].append('maximize proj, with min floor 80')
-    d[formulate(all_players, [fpts, inv_dollar], [total_floor_constraint_func(80)])].append('maximize pts/dollar, min floor 80')
+    d[formulate(
+        all_players, [fpts], [total_floor_constraint_func(80)])].append(
+            'maximize proj, with min floor 80')
+    d[formulate(
+        all_players,
+        [fpts, inv_dollar],
+        [total_floor_constraint_func(80)])].append(
+            'maximize pts/dollar, min floor 80')
     d[formulate(all_players, [floor, ceil])].append('maximizing floor * ceil')
-    d[formulate(all_players, [floor, ceil, fpts])].append('maximizing floor * ceil * proj')
-    d[formulate(all_players, [ceil], [total_floor_constraint_func(80)])].append('maximizing ceil')
+    d[formulate(all_players, [floor, ceil, fpts])].append(
+        'maximizing floor * ceil * proj')
+    d[formulate(
+        all_players, [ceil], [total_floor_constraint_func(80)])].append(
+            'maximizing ceil')
 
     max_floor = formulate(all_players, [floor]).floor
-    d[formulate(all_players, [ceil], [total_floor_constraint_func(0.85 * max_floor)])].append('maximizing ceil; with floor >.85 max')
-    d[formulate(all_players, [ceil], [total_floor_constraint_func(0.95 * max_floor)])].append('maximizing ceil; with floor >.95 max')
-    d[formulate(all_players, [ceil, fpts], [total_floor_constraint_func(0.85 * max_floor)])].append('maximizing ceil * proj; with floor >.85 max')
-    d[formulate(all_players, [ceil, fpts], [total_floor_constraint_func(0.95 * max_floor)])].append('maximizing ceil * proj; with floor >.95 max')
+    d[formulate(
+        all_players,
+        [ceil], [total_floor_constraint_func(0.85 * max_floor)])].append(
+            'maximizing ceil; with floor >.85 max')
+    d[formulate(
+        all_players, [ceil],
+        [total_floor_constraint_func(0.95 * max_floor)])].append(
+            'maximizing ceil; with floor >.95 max')
+    d[formulate(
+        all_players, [ceil, fpts],
+        [total_floor_constraint_func(0.85 * max_floor)])].append(
+            'maximizing ceil * proj; with floor >.85 max')
+    d[formulate(
+        all_players, [ceil, fpts],
+        [total_floor_constraint_func(0.95 * max_floor)])].append(
+            'maximizing ceil * proj; with floor >.95 max')
 
     for k, v in d.iteritems():
         for reason in v:
@@ -155,4 +179,5 @@ def generate_optimal_lineup(week, slatefile):
     for p in sorted(d2, key=lambda x: d2[x], reverse=True):
         print p, d2[p]
 
-generate_optimal_lineup('week7', 'fanduel_sunday_1pm_only.csv')
+
+generate_optimal_lineup('week7', 'fanduel_sun_mon.csv')
