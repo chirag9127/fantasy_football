@@ -9,6 +9,13 @@ def lookup(dic, key, *keys):
     return dic.get(key, 0)
 
 
+def convert_to_num(string):
+    try:
+        return float(string)
+    except:
+        return 0.0
+
+
 def create_variables(week, slatefile):
     qbs, rbs, wrs, tes, defense, kicker = get_projections_by_position(
         week, slatefile)
@@ -52,13 +59,13 @@ def formulate_problem(week, slatefile,
     if 'floor' in maximizing_variables and \
             'projections' in maximizing_variables:
         prob += lpSum([item[1]['var']*(float(item[1]['data']['fpts']) *
-                                       lookup(item[1]['data'],
-                                              'consistency', 'floor'))
+                                       convert_to_num(
+                                           item[1]['data'].get('floor')))
                        for item in all_players]), \
             "maximizing floor times projections"
     elif 'floor' in maximizing_variables:
-        prob += lpSum([item[1]['var'] * lookup(item[1]['data'],
-                                               'consistency', 'floor')
+        prob += lpSum([item[1]['var'] * convert_to_num(
+            item[1]['data'].get('floor'))
                        for item in all_players]), \
             "maximizing floor"
     elif 'projections' in maximizing_variables:
@@ -90,10 +97,7 @@ def formulate_problem(week, slatefile,
 
     prob.solve()
 
-    print "Status:", LpStatus[prob.status]
-    for v in prob.variables():
-        if v.varValue == 1:
-            print(v.name, "=", v.varValue)
+    print_solution(prob, all_players)
 
 
 def formulate_problem_with_floor_constraint(week, slatefile):
@@ -107,9 +111,8 @@ def formulate_problem_with_floor_constraint(week, slatefile):
                    for item in all_players]), "maximizing projections"
 
     # add floor constraint
-    prob += lpSum([item[1]['var'] * lookup(item[1]['data'],
-                                           'consistency', 'floor')
-                   for item in all_players]) >= 80, "maximizing floor"
+    prob += lpSum([item[1]['var'] * convert_to_num(item[1]['data'].get('floor'))
+                   for item in all_players]) >= 110, "maximizing floor"
 
     # add salary constraint
     prob += lpSum([item[1]['var'] * float(item[1]['data']['salary'])
@@ -135,10 +138,7 @@ def formulate_problem_with_floor_constraint(week, slatefile):
 
     prob.solve()
 
-    print "Status:", LpStatus[prob.status]
-    for v in prob.variables():
-        if v.varValue == 1:
-            print(v.name, "=", v.varValue)
+    print_solution(prob, all_players)
 
 
 def formulate_problem_with_points_per_dollar(week, slatefile):
@@ -153,13 +153,6 @@ def formulate_problem_with_points_per_dollar(week, slatefile):
                     float(item[1]['data']['salary']))
                    for item in all_players]), "maximizing projections"
 
-    # add floor constraint
-    '''
-    prob += lpSum([item[1]['var'] * lookup(item[1]['data'],
-                                           'consistency', 'floor')
-                   for item in all_players]) >= 80, "maximizing floor"
-    '''
-
     # add salary constraint
     prob += lpSum([item[1]['var'] * float(item[1]['data']['salary'])
                    for item in all_players]) <= 60000.0, "Salary constraint"
@@ -184,10 +177,32 @@ def formulate_problem_with_points_per_dollar(week, slatefile):
 
     prob.solve()
 
-    print "Status:", LpStatus[prob.status]
-    for v in prob.variables():
+    print_solution(prob, all_players)
+
+
+def print_solution(problem, all_players):
+    print "-" * 100
+    print "Status:", LpStatus[problem.status]
+    player_var_to_item = {}
+    sum_projections = 0
+    sum_floor = 0
+    sum_salary = 0
+    for item in all_players:
+        player_var_to_item[item[1]['var']] = item
+    for v in problem.variables():
         if v.varValue == 1:
-            print(v.name, "=", v.varValue)
+            sum_projections += float(player_var_to_item[v][1]['data']['fpts'])
+            sum_floor += float(
+                convert_to_num(player_var_to_item[v][1]['data'].get('floor')))
+            sum_salary += float(player_var_to_item[v][1]['data']['salary'])
+            print(v.name, "=", v.varValue,
+                  player_var_to_item[v][1]['data']['fpts'],
+                  convert_to_num(player_var_to_item[v][1]['data'].get('floor')),
+                  player_var_to_item[v][1]['data']['salary'])
+    print "Sum projections: ", sum_projections
+    print "Sum floor: ", sum_floor
+    print "Sum salary: ", sum_salary
+    print "-" * 100
 
 
 def generate_optimal_lineup(week, slatefile):
@@ -198,4 +213,4 @@ def generate_optimal_lineup(week, slatefile):
     formulate_problem_with_points_per_dollar(week, slatefile)
 
 
-generate_optimal_lineup('week6', 'fanduel_sunday_1pm.csv')
+generate_optimal_lineup('week7', 'fanduel_thu_sun_am.csv')

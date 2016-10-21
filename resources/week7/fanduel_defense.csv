@@ -1,31 +1,31 @@
 player,salary,team,pos,opp,ceil,floor,fpts
-"Kansas City Chiefs",4500,KCC,D,OAK,,,7.12
-"Oakland Raiders",4600,OAK,D,KCC,,,6.71
-"Tennessee Titans",4600,TEN,D,CLE,,,10.14
-"Cleveland Browns",4000,CLE,D,TEN,,,8.27
-"San Francisco 49ers",4400,SFO,D,BUF,,,6.01
-"Buffalo Bills",4700,BUF,D,SFO,,,10.92
-"Atlanta Falcons",4500,ATL,D,SEA,,,6.12
-"Seattle Seahawks",4800,SEA,D,ATL,,,9.46
-"New York Jets",4000,NYJ,D,ARI,,,4.97
-"Arizona Cardinals",5400,ARI,D,NYJ,,,12.06
-"Houston Texans",4200,HOU,D,IND,,,8.39
-"Indianapolis Colts",4300,IND,D,HOU,,,5.52
-"Dallas Cowboys",4300,DAL,D,GBP,,,4.94
-"Green Bay Packers",4500,GBP,D,DAL,,,8.38
-"Detroit Lions",4300,DET,D,LAR,,,9.23
-"Los Angeles Rams",4700,LAR,D,DET,,,7.82
-"Pittsburgh Steelers",4300,PIT,D,MIA,,,8.34
-"Miami Dolphins",4400,MIA,D,PIT,,,6.3
-"New England Patriots",4400,NEP,D,CIN,,,10.03
-"Cincinnati Bengals",5100,CIN,D,NEP,,,5.76
-"Denver Broncos",5000,DEN,D,SDC,,,10.34
-"San Diego Chargers",4100,SDC,D,DEN,,,6.08
-"Philadelphia Eagles",4400,PHI,D,WAS,,,9.06
-"Washington Redskins",4400,WAS,D,PHI,,,6.2
-"Carolina Panthers",4700,CAR,D,NOS,,,7.43
-"New Orleans Saints",4100,NOS,D,CAR,,,3.72
-"Chicago Bears",4300,CHI,D,JAC,,,6.27
-"Jacksonville Jaguars",4300,JAC,D,CHI,,,7.81
-"Baltimore Ravens",4800,BAL,D,NYG,,,8.53
-"New York Giants",4400,NYG,D,BAL,,,7.75
+"Tampa Bay Buccaneers",4300,TBB,D,SFO,,,6.95
+"San Francisco 49ers",4400,SFO,D,TBB,,,6.32
+"Cincinnati Bengals",5100,CIN,D,CLE,,,9.88
+"Cleveland Browns",4000,CLE,D,CIN,,,6
+"Buffalo Bills",4700,BUF,D,MIA,,,9.76
+"Miami Dolphins",4400,MIA,D,BUF,,,6.31
+"San Diego Chargers",4100,SDC,D,ATL,,,5.1
+"Atlanta Falcons",4500,ATL,D,SDC,,,6.28
+"Houston Texans",4200,HOU,D,DEN,,,7.62
+"Denver Broncos",5000,DEN,D,HOU,,,12.16
+"Arizona Cardinals",4600,ARI,D,SEA,,,8.49
+"Seattle Seahawks",4800,SEA,D,ARI,,,8.33
+"New England Patriots",4400,NEP,D,PIT,,,9.42
+"Pittsburgh Steelers",4300,PIT,D,NEP,,,5.69
+"Tennessee Titans",4600,TEN,D,IND,,,8.44
+"Indianapolis Colts",4300,IND,D,TEN,,,6.32
+"Minnesota Vikings",4900,MIN,D,PHI,,,10.22
+"Philadelphia Eagles",4400,PHI,D,MIN,,,9.18
+"Los Angeles Rams",4700,LAR,D,NYG,,,8.86
+"New York Giants",4400,NYG,D,LAR,,,6.78
+"Chicago Bears",4000,CHI,D,GBP,,,5.39
+"Green Bay Packers",4600,GBP,D,CHI,,,9.26
+"New Orleans Saints",4100,NOS,D,KCC,,,4.88
+"Kansas City Chiefs",4500,KCC,D,NOS,,,5.38
+"Washington Redskins",4400,WAS,D,DET,,,7.4
+"Detroit Lions",4300,DET,D,WAS,,,8.19
+"New York Jets",4400,NYJ,D,BAL,,,5.75
+"Baltimore Ravens",4800,BAL,D,NYJ,,,10.27
+"Oakland Raiders",4600,OAK,D,JAC,,,5.66
+"Jacksonville Jaguars",4300,JAC,D,OAK,,,7.23
