@@ -1,216 +1,158 @@
+from collections import defaultdict
+from helpers import *
+
 from pulp import *
 
 from load_projections import get_projections_by_position
 
 
-def lookup(dic, key, *keys):
-    if keys:
-        return lookup(dic.get(key, {}), *keys)
-    return dic.get(key, 0)
+def product(list_floats):
+    ret_val = 1
+    for f in list_floats:
+        ret_val *= float(f)
+    return ret_val
+
+class PlayerVariable(object):
+
+    def __init__(self, pos, data):
+        self.position = pos
+        self.data = data
+        self.name = data['player']
+        self.variable = LpVariable(data['player'], 0, 1, LpInteger)
+
+    @property
+    def fpts(self):
+        return float(self.data['fpts'])
+
+    @property
+    def floor(self):
+        return lookup(self.data, 'consistency', 'floor')
+
+    @property
+    def ceiling(self):
+        return lookup(self.data, 'consistency', 'ceil')
+
+    @property
+    def salary(self):
+        return float(self.data['salary'])
 
 
-def convert_to_num(string):
-    try:
-        return float(string)
-    except:
-        return 0.0
+POSITIONS = [('qb', 1), ('rb', 2), ('wr', 3), ('te', 1), ('def', 1), ('k', 1)]
+POSITION_ORDERS = {POSITIONS[i][0]: i for i in range(len(POSITIONS))}
+
+class Lineup(object):
+
+    def __init__(self, all_players, prob):
+        self.prob = prob
+        self.players = [all_players[p.name] for p in prob.variables() if p.varValue == 1]
+        self.players.sort(key=lambda x: x.name)
+        self.string_players = ';'.join([p.name for p in self.players])
+        self.players.sort(key=lambda x: POSITION_ORDERS[x.position])
+        print self.players[0].data
+
+    def __str__(self):
+        return "Status: {}\n{}\n{}\n".format(LpStatus[self.prob.status],
+            "\n".join(["{}: {}".format(k, v) for k, v in self.summary]),
+            "\n".join(['{}: {}'.format(p.position, p.name) for p in self]))
+
+    @property
+    def summary(self):
+        return [
+            ('projected', sum(player.fpts for player in self)),
+            ('salary', sum(player.salary for player in self)),
+            ('floor', sum(player.floor for player in self)),
+            ('ceiling', sum(player.ceiling for player in self)),
+        ]
+
+    @property
+    def floor(self):
+        return sum(player.floor for player in self)
+
+    def __iter__(self):
+        return iter(self.players)
+
+    def __hash__(self):
+        return self.string_players.__hash__()
+
+    def __eq__(self, other):
+        return self.__hash__() == other.__hash__()
+
+
+def new_lp_problem(all_players):
+    prob = LpProblem("Fanduel selection problem", LpMaximize)
+    # add salary constraint
+    prob += lpSum([item.variable * item.salary
+                   for item in all_players.values()]) <= 60000.0, "Salary constraint"
+
+    for position, num_pos in [('qb', 1), ('rb', 2), ('wr', 3), ('te', 1), ('def', 1), ('k', 1)]:
+        prob += lpSum([player.variable for player in all_players.values()
+                       if player.position == position]) == num_pos,\
+                "{} constraint".format(position)
+    return prob
 
 
 def create_variables(week, slatefile):
     qbs, rbs, wrs, tes, defense, kicker = get_projections_by_position(
         week, slatefile)
-    qbvs, rbvs, wrvs, tevs, defvs, kickervs = [], [], [], [], [], []
-    for qb in qbs:
-        qbvs.append((qb['player'], {'var':
-                                    LpVariable(qb['player'], 0, 1, LpInteger),
-                                    'data': qb}))
-    for rb in rbs:
-        rbvs.append((rb['player'], {'var':
-                                    LpVariable(rb['player'], 0, 1, LpInteger),
-                                    'data': rb}))
-    for wr in wrs:
-        wrvs.append((wr['player'], {'var':
-                                    LpVariable(wr['player'], 0, 1, LpInteger),
-                                    'data': wr}))
-    for te in tes:
-        tevs.append((te['player'], {'var':
-                                    LpVariable(te['player'], 0, 1, LpInteger),
-                                    'data': te}))
-    for de in defense:
-        defvs.append((de['player'], {'var':
-                                     LpVariable(de['player'], 0, 1, LpInteger),
-                                     'data': de}))
-    for ki in kicker:
-        kickervs.append((ki['player'], {'var':
-                                        LpVariable(
-                                            ki['player'], 0, 1, LpInteger),
-                                        'data': ki}))
-    return qbvs, rbvs, wrvs, tevs, kickervs, defvs
+    variables = {}
+    for pos, pos_list in [('qb', qbs), ('rb', rbs), ('wr', wrs),
+                          ('te', tes), ('def', defense), ('k', kicker)]:
+        for player in pos_list:
+            pv = PlayerVariable(pos, player)
+            variables[pv.variable.name] = pv
+    return variables
 
 
-def formulate_problem(week, slatefile,
-                      maximizing_variables=['floor', 'projections']):
-    print 'Maximizing: ', ' '.join(maximizing_variables)
-    prob = LpProblem("Fanduel selection problem", LpMaximize)
-    qbvs, rbvs, wrvs, tevs, kickervs, defvs = create_variables(week,
-                                                               slatefile)
-    all_players = qbvs + rbvs + wrvs + tevs + kickervs + defvs
+def add_maximizing(prob, all_players, maximizing):
+    prob += lpSum([player.variable * product(
+        maximize(player) for maximize in maximizing
+    ) for player in all_players.values()])
+    return prob
 
-    if 'floor' in maximizing_variables and \
-            'projections' in maximizing_variables:
-        prob += lpSum([item[1]['var']*(float(item[1]['data']['fpts']) *
-                                       convert_to_num(
-                                           item[1]['data'].get('floor')))
-                       for item in all_players]), \
-            "maximizing floor times projections"
-    elif 'floor' in maximizing_variables:
-        prob += lpSum([item[1]['var'] * convert_to_num(
-            item[1]['data'].get('floor'))
-                       for item in all_players]), \
-            "maximizing floor"
-    elif 'projections' in maximizing_variables:
-        prob += lpSum([item[1]['var'] * float(item[1]['data']['fpts'])
-                       for item in all_players]), \
-            "maximizing projections"
 
-    # add salary constraint
-    prob += lpSum([item[1]['var'] * float(item[1]['data']['salary'])
-                   for item in all_players]) <= 60000.0, "Salary constraint"
+def add_constraints(prob, all_players, constraints):
+    for constraint_func in constraints:
+        prob += constraint_func(all_players)
+    return prob
 
-    # qb constraint
-    prob += lpSum([item[1]['var'] for item in qbvs]) == 1, "qb constraint"
 
-    # rb constraint
-    prob += lpSum([item[1]['var'] for item in rbvs]) == 2, "rb constraint"
-
-    # wr constraint
-    prob += lpSum([item[1]['var'] for item in wrvs]) == 3, "wr constraint"
-
-    # te constraint
-    prob += lpSum([item[1]['var'] for item in tevs]) == 1, "te constraint"
-
-    # de constraint
-    prob += lpSum([item[1]['var'] for item in defvs]) == 1, "def constraint"
-
-    # kicker constraint
-    prob += lpSum([item[1]['var'] for item in kickervs]) == 1, "ki constraint"
-
+def formulate(all_players, maximizing, constraints=list()):
+    prob = new_lp_problem(all_players)
+    prob = add_maximizing(prob, all_players, maximizing)
+    prob = add_constraints(prob, all_players, constraints)
     prob.solve()
-
-    print_solution(prob, all_players)
-
-
-def formulate_problem_with_floor_constraint(week, slatefile):
-    print 'Maximizing projections with floor constraint'
-    prob = LpProblem("Fanduel selection problem", LpMaximize)
-    qbvs, rbvs, wrvs, tevs, kickervs, defvs = create_variables(week,
-                                                               slatefile)
-    all_players = qbvs + rbvs + wrvs + tevs + kickervs + defvs
-
-    prob += lpSum([item[1]['var'] * float(item[1]['data']['fpts'])
-                   for item in all_players]), "maximizing projections"
-
-    # add floor constraint
-    prob += lpSum([item[1]['var'] * convert_to_num(item[1]['data'].get('floor'))
-                   for item in all_players]) >= 110, "maximizing floor"
-
-    # add salary constraint
-    prob += lpSum([item[1]['var'] * float(item[1]['data']['salary'])
-                   for item in all_players]) <= 60000.0, "Salary constraint"
-
-    # qb constraint
-    prob += lpSum([item[1]['var'] for item in qbvs]) == 1, "qb constraint"
-
-    # rb constraint
-    prob += lpSum([item[1]['var'] for item in rbvs]) == 2, "rb constraint"
-
-    # wr constraint
-    prob += lpSum([item[1]['var'] for item in wrvs]) == 3, "wr constraint"
-
-    # te constraint
-    prob += lpSum([item[1]['var'] for item in tevs]) == 1, "te constraint"
-
-    # de constraint
-    prob += lpSum([item[1]['var'] for item in defvs]) == 1, "def constraint"
-
-    # kicker constraint
-    prob += lpSum([item[1]['var'] for item in kickervs]) == 1, "ki constraint"
-
-    prob.solve()
-
-    print_solution(prob, all_players)
-
-
-def formulate_problem_with_points_per_dollar(week, slatefile):
-    print 'Maximizing points/dollar'
-    prob = LpProblem("Fanduel selection problem", LpMaximize)
-    qbvs, rbvs, wrvs, tevs, kickervs, defvs = create_variables(week,
-                                                               slatefile)
-    all_players = qbvs + rbvs + wrvs + tevs + kickervs + defvs
-
-    prob += lpSum([item[1]['var'] *
-                   (float(item[1]['data']['fpts']) /
-                    float(item[1]['data']['salary']))
-                   for item in all_players]), "maximizing projections"
-
-    # add salary constraint
-    prob += lpSum([item[1]['var'] * float(item[1]['data']['salary'])
-                   for item in all_players]) <= 60000.0, "Salary constraint"
-
-    # qb constraint
-    prob += lpSum([item[1]['var'] for item in qbvs]) == 1, "qb constraint"
-
-    # rb constraint
-    prob += lpSum([item[1]['var'] for item in rbvs]) == 2, "rb constraint"
-
-    # wr constraint
-    prob += lpSum([item[1]['var'] for item in wrvs]) == 3, "wr constraint"
-
-    # te constraint
-    prob += lpSum([item[1]['var'] for item in tevs]) == 1, "te constraint"
-
-    # de constraint
-    prob += lpSum([item[1]['var'] for item in defvs]) == 1, "def constraint"
-
-    # kicker constraint
-    prob += lpSum([item[1]['var'] for item in kickervs]) == 1, "ki constraint"
-
-    prob.solve()
-
-    print_solution(prob, all_players)
-
-
-def print_solution(problem, all_players):
-    print "-" * 100
-    print "Status:", LpStatus[problem.status]
-    player_var_to_item = {}
-    sum_projections = 0
-    sum_floor = 0
-    sum_salary = 0
-    for item in all_players:
-        player_var_to_item[item[1]['var']] = item
-    for v in problem.variables():
-        if v.varValue == 1:
-            sum_projections += float(player_var_to_item[v][1]['data']['fpts'])
-            sum_floor += float(
-                convert_to_num(player_var_to_item[v][1]['data'].get('floor')))
-            sum_salary += float(player_var_to_item[v][1]['data']['salary'])
-            print(v.name, "=", v.varValue,
-                  player_var_to_item[v][1]['data']['fpts'],
-                  convert_to_num(player_var_to_item[v][1]['data'].get('floor')),
-                  player_var_to_item[v][1]['data']['salary'])
-    print "Sum projections: ", sum_projections
-    print "Sum floor: ", sum_floor
-    print "Sum salary: ", sum_salary
-    print "-" * 100
+    return Lineup(all_players, prob)
 
 
 def generate_optimal_lineup(week, slatefile):
-    formulate_problem(week, slatefile)
-    formulate_problem(week, slatefile, ['floor'])
-    formulate_problem(week, slatefile, ['projections'])
-    formulate_problem_with_floor_constraint(week, slatefile)
-    formulate_problem_with_points_per_dollar(week, slatefile)
+    d = defaultdict(list)
+    all_players = create_variables(week, slatefile)
+    d[formulate(all_players, [fpts, floor])].append('maximizing projection * floor')
+    d[formulate(all_players, [floor])].append('maximizing floor')
+    d[formulate(all_players, [fpts])].append('maximizing projection')
+    d[formulate(all_players, [fpts], [total_floor_constraint_func(80)])].append('maximize proj, with min floor 80')
+    d[formulate(all_players, [fpts, inv_dollar], [total_floor_constraint_func(80)])].append('maximize pts/dollar, min floor 80')
+    d[formulate(all_players, [floor, ceil])].append('maximizing floor * ceil')
+    d[formulate(all_players, [floor, ceil, fpts])].append('maximizing floor * ceil * proj')
+    d[formulate(all_players, [ceil], [total_floor_constraint_func(80)])].append('maximizing ceil')
 
+    max_floor = formulate(all_players, [floor]).floor
+    d[formulate(all_players, [ceil], [total_floor_constraint_func(0.85 * max_floor)])].append('maximizing ceil; with floor >.85 max')
+    d[formulate(all_players, [ceil], [total_floor_constraint_func(0.95 * max_floor)])].append('maximizing ceil; with floor >.95 max')
+    d[formulate(all_players, [ceil, fpts], [total_floor_constraint_func(0.85 * max_floor)])].append('maximizing ceil * proj; with floor >.85 max')
+    d[formulate(all_players, [ceil, fpts], [total_floor_constraint_func(0.95 * max_floor)])].append('maximizing ceil * proj; with floor >.95 max')
 
-generate_optimal_lineup('week7', 'fanduel_thu_sun_am.csv')
+    for k, v in d.iteritems():
+        for reason in v:
+            print reason
+        print k
+
+    d2 = defaultdict(int)
+
+    for lineup in d:
+        for player in lineup:
+            d2[(player.position, player.name)] += 1
+    for p in sorted(d2, key=lambda x: d2[x], reverse=True):
+        print p, d2[p]
+
+generate_optimal_lineup('week7', 'fanduel_sunday_1pm_only.csv')
