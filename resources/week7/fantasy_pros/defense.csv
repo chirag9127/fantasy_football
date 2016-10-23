@@ -1,0 +1,27 @@
+Player , Kickoff , Opponent , Spread , Over/Under , Predicted Score , Weather , Projected Rank , Salary Rank , Difference , Projected Points , Salary , CPP 
+Denver Broncos (DEN - DST),Mon 8:30PM,HOU,DEN (-7.5),40.5,DEN 24,"Clear, 68 F, 3 mph",1,2,+1,9.18,"$5,000",$544
+Minnesota Vikings (MIN - DST),Sun 1:00PM,@PHI,MIN (-3),39,MIN 21,"Partly Cloudy, 58 F, 12 mph",2,3,+1,8.71,"$4,900",$563
+New England Patriots (NE - DST),Sun 4:25PM,@PIT,NE (-7.5),48.5,NE 28,"Partly Cloudy, 64 F, 11 mph",3,13,+10,8.39,"$4,400",$525
+Buffalo Bills (BUF - DST),Sun 1:00PM,@MIA,BUF (-2.5),45,BUF 24,"Clear, 78 F, 11 mph",4,6,+2,8.06,"$4,700",$583
+Cincinnati Bengals (CIN - DST),Sun 1:00PM,CLE,CIN (-11),46,CIN 29,"Clear, 60 F, 9 mph",5,1,-4,8.02,"$5,100",$636
+Seattle Seahawks (SEA - DST),Sun 8:30PM,@ARI,SEA (+1),43.5,SEA 21,Indoor,6,4,-2,7.92,"$4,800",$606
+Arizona Cardinals (ARI - DST),Sun 8:30PM,SEA,ARI (-1),43.5,ARI 22,Indoor,7,9,+2,7.7,"$4,600",$598
+Baltimore Ravens (BAL - DST),Sun 1:00PM,@NYJ,BAL (+2.5),40,BAL 19,"Clear, 56 F, 14 mph",8,5,-3,7.69,"$4,800",$624
+Philadelphia Eagles (PHI - DST),Sun 1:00PM,MIN,PHI (+3),39,PHI 18,"Partly Cloudy, 58 F, 12 mph",9,15,+6,7.55,"$4,400",$583
+Tennessee Titans (TEN - DST),Sun 1:00PM,IND,TEN (-3.5),48,TEN 26,"Clear, 64 F, 6 mph",10,7,-3,7.53,"$4,600",$611
+Houston Texans (HOU - DST),Mon 8:30PM,@DEN,HOU (+7.5),40.5,HOU 17,"Clear, 68 F, 3 mph",11,23,+12,7.52,"$4,200",$559
+Kansas City Chiefs (KC - DST),Sun 1:00PM,NO,KC (-7),51.5,KC 29,"Clear, 64 F, 10 mph",12,11,-1,6.9,"$4,500",$652
+New York Jets (NYJ - DST),Sun 1:00PM,BAL,NYJ (-2.5),40,NYJ 21,"Clear, 56 F, 14 mph",13,14,+1,6.84,"$4,400",$644
+Tampa Bay Buccaneers (TB - DST),Sun 4:05PM,@SF,TB (+1),45,TB 22,"Clear, 70 F, 5 mph",14,21,+7,6.76,"$4,300",$636
+Oakland Raiders (OAK - DST),Sun 1:00PM,@JAC,OAK (+2),47.5,OAK 23,"Clear, 68 F, 8 mph",15,8,-7,6.69,"$4,600",$688
+Detroit Lions (DET - DST),Sun 1:00PM,WAS,DET (+1),50,DET 25,Indoor,16,18,+2,6.53,"$4,300",$659
+Pittsburgh Steelers (PIT - DST),Sun 4:25PM,NE,PIT (+7.5),48.5,PIT 21,"Partly Cloudy, 64 F, 11 mph",17,20,+3,6.52,"$4,300",$660
+Washington Redskins (WAS - DST),Sun 1:00PM,@DET,WAS (-1),50,WAS 26,Indoor,18,17,-1,6.35,"$4,400",$693
+Miami Dolphins (MIA - DST),Sun 1:00PM,BUF,MIA (+2.5),45,MIA 21,"Clear, 78 F, 11 mph",19,12,-7,6.16,"$4,400",$715
+San Francisco 49ers (SF - DST),Sun 4:05PM,TB,SF (-1),45,SF 23,"Clear, 70 F, 5 mph",20,16,-4,6.12,"$4,400",$719
+Atlanta Falcons (ATL - DST),Sun 4:05PM,SD,ATL (-5.5),52.5,ATL 29,Indoor,21,10,-11,5.85,"$4,500",$769
+Jacksonville Jaguars (JAC - DST),Sun 1:00PM,OAK,JAC (-2),47.5,JAC 25,"Clear, 68 F, 8 mph",22,22,0,5.82,"$4,300",$738
+Indianapolis Colts (IND - DST),Sun 1:00PM,@TEN,IND (+3.5),48,IND 22,"Clear, 64 F, 6 mph",23,19,-4,5.81,"$4,300",$740
+Cleveland Browns (CLE - DST),Sun 1:00PM,@CIN,CLE (+11),46,CLE 18,"Clear, 60 F, 9 mph",24,26,+2,5.7,"$4,000",$702
+San Diego Chargers (SD - DST),Sun 4:05PM,@ATL,SD (+5.5),52.5,SD 24,Indoor,25,25,0,5.67,"$4,100",$724
+New Orleans Saints (NO - DST),Sun 1:00PM,@KC,NO (+7),51.5,NO 22,"Clear, 64 F, 10 mph",26,24,-2,5.54,"$4,100",$741

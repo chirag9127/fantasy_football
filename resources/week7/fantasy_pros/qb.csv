@@ -1,0 +1,78 @@
+Player , Kickoff , Opponent , Spread , Over/Under , Predicted Score , Weather , Projected Rank , Salary Rank , Difference , Projected Points , Salary , CPP 
+Tom Brady (NE - QB),Sun 4:25PM,@PIT,NE (-7.5),48.5,NE 28,"Partly Cloudy, 64 F, 11 mph",1,1,0,22,"$9,100",$414
+Matt Ryan (ATL - QB),Sun 4:05PM,SD,ATL (-5.5),53,ATL 29,Indoor,2,2,0,21.52,"$8,700",$404
+Philip Rivers (SD - QB),Sun 4:05PM,@ATL,SD (+5.5),53,SD 24,Indoor,3,11,+8,20.86,"$7,800",$374
+Matthew Stafford (DET - QB),Sun 1:00PM,WAS,DET (+1),50,DET 25,Indoor,4,10,+6,20.4,"$7,900",$387
+Andy Dalton (CIN - QB),Sun 1:00PM,CLE,CIN (-11),46,CIN 29,"Clear, 60 F, 9 mph",5,7,+2,20.14,"$8,100",$402
+Andrew Luck (IND - QB),Sun 1:00PM,@TEN,IND (+3.5),48,IND 22,"Clear, 64 F, 6 mph",6,6,0,19.67,"$8,200",$417
+Marcus Mariota (TEN - QB),Sun 1:00PM,IND,TEN (-3.5),48,TEN 26,"Clear, 64 F, 6 mph",7,9,+2,19.32,"$7,900",$409
+Drew Brees (NO - QB),Sun 1:00PM,@KC,NO (+7),51,NO 22,"Clear, 64 F, 10 mph",8,3,-5,19.08,"$8,500",$445
+Kirk Cousins (WAS - QB),Sun 1:00PM,@DET,WAS (-1),50,WAS 26,Indoor,9,18,+9,18.94,"$7,300",$385
+Blake Bortles (JAC - QB),Sun 1:00PM,OAK,JAC (-2),47,JAC 25,"Clear, 68 F, 8 mph",10,16,+6,18.94,"$7,400",$391
+Derek Carr (OAK - QB),Sun 1:00PM,@JAC,OAK (+2),47,OAK 23,"Clear, 68 F, 8 mph",11,5,-6,18.74,"$8,300",$443
+Jameis Winston (TB - QB),Sun 4:05PM,@SF,TB (+1),45,TB 22,"Clear, 70 F, 5 mph",12,15,+3,18.48,"$7,500",$406
+Alex Smith (KC - QB),Sun 1:00PM,NO,KC (-7),51,KC 29,"Clear, 64 F, 10 mph",13,20,+7,18.41,"$7,200",$391
+Russell Wilson (SEA - QB),Sun 8:30PM,@ARI,SEA (+1),43.5,SEA 21,Indoor,14,8,-6,18.15,"$8,000",$441
+Tyrod Taylor (BUF - QB),Sun 1:00PM,@MIA,BUF (-2.5),45,BUF 24,"Clear, 78 F, 11 mph",15,12,-3,17.21,"$7,700",$447
+Colin Kaepernick (SF - QB),Sun 4:05PM,TB,SF (-1),45,SF 23,"Clear, 70 F, 5 mph",16,27,+11,17.17,"$6,500",$379
+Joe Flacco (BAL - QB),Sun 1:00PM,@NYJ,BAL (+2),40.5,BAL 19,"Clear, 56 F, 14 mph",17,13,-4,16.83,"$7,600",$452
+Carson Palmer (ARI - QB),Sun 8:30PM,SEA,ARI (-1),43.5,ARI 22,Indoor,18,14,-4,15.48,"$7,600",$491
+Sam Bradford (MIN - QB),Sun 1:00PM,@PHI,MIN (-3),39,MIN 21,"Partly Cloudy, 58 F, 12 mph",19,17,-2,15.12,"$7,300",$483
+Ryan Tannehill (MIA - QB),Sun 1:00PM,BUF,MIA (+2.5),45,MIA 21,"Clear, 78 F, 11 mph",20,19,-1,14.82,"$7,200",$486
+Trevor Siemian (DEN - QB),Mon 8:30PM,HOU,DEN (-7.5),40.5,DEN 24,"Clear, 68 F, 3 mph",21,22,+1,14.79,"$7,000",$473
+Landry Jones (PIT - QB),Sun 4:25PM,NE,PIT (+7.5),48.5,PIT 21,"Partly Cloudy, 64 F, 11 mph",22,30,+8,14.77,"$6,200",$420
+Cody Kessler (CLE - QB),Sun 1:00PM,@CIN,CLE (+11),46,CLE 18,"Clear, 60 F, 9 mph",23,25,+2,14.17,"$6,600",$466
+Geno Smith (NYJ - QB),Sun 1:00PM,BAL,NYJ (-2),40.5,NYJ 21,"Clear, 56 F, 14 mph",24,53,+29,13.83,"$5,000",$361
+Carson Wentz (PHI - QB),Sun 1:00PM,MIN,PHI (+3),39,PHI 18,"Partly Cloudy, 58 F, 12 mph",25,21,-4,13.65,"$7,100",$520
+Brock Osweiler (HOU - QB),Mon 8:30PM,@DEN,HOU (+7.5),40.5,HOU 17,"Clear, 68 F, 3 mph",26,24,-2,13.11,"$6,700",$511
+Ryan Fitzpatrick (NYJ - QB),Sun 1:00PM,BAL,NYJ (-2),40.5,NYJ 21,"Clear, 56 F, 14 mph",27,23,-4,0.58,"$6,900","$11,909"
+Drew Stanton (ARI - QB),Sun 8:30PM,SEA,ARI (-1),43.5,ARI 22,Indoor,28,29,+1,0.28,"$6,400","$22,674"
+Blaine Gabbert (SF - QB),Sun 4:05PM,TB,SF (-1),45,SF 23,"Clear, 70 F, 5 mph",29,28,-1,0.25,"$6,400","$25,217"
+Paxton Lynch (DEN - QB),Mon 8:30PM,HOU,DEN (-7.5),40.5,DEN 24,"Clear, 68 F, 3 mph",30,31,+1,0.18,"$6,200","$34,884"
+Ryan Mallett (BAL - QB),Sun 1:00PM,@NYJ,BAL (+2),40.5,BAL 19,"Clear, 56 F, 14 mph",31,32,+1,0.17,"$6,000","$35,253"
+Dustin Vaughan (PIT - QB),Sun 4:25PM,NE,PIT (+7.5),48.5,PIT 21,"Partly Cloudy, 64 F, 11 mph",63,71,+8,0,"$5,000",$0
+Brandon Doughty (MIA - QB),Sun 1:00PM,BUF,MIA (+2.5),45,MIA 21,"Clear, 78 F, 11 mph",62,69,+7,0,"$5,000",$0
+Kellen Clemens (SD - QB),Sun 4:05PM,@ATL,SD (+5.5),53,SD 24,Indoor,65,74,+9,0,"$5,000",$0
+Griffin Neal (NO - QB),Sun 1:00PM,@KC,NO (+7),51,NO 22,"Clear, 64 F, 10 mph",61,72,+11,0,"$5,000",$0
+Keith Wenning (CIN - QB),Sun 1:00PM,CLE,CIN (-11),46,CIN 29,"Clear, 60 F, 9 mph",64,67,+3,0,"$5,000",$0
+David Fales (BAL - QB),Sun 1:00PM,@NYJ,BAL (+2),40.5,BAL 19,"Clear, 56 F, 14 mph",59,66,+7,0,"$5,000",$0
+Matt Moore (MIA - QB),Sun 1:00PM,BUF,MIA (+2.5),45,MIA 21,"Clear, 78 F, 11 mph",56,47,-9,0,"$5,500",$0
+Ryan Griffin (TB - QB),Sun 4:05PM,@SF,TB (+1),45,TB 22,"Clear, 70 F, 5 mph",57,64,+7,0,"$5,000",$0
+Bryce Petty (NYJ - QB),Sun 1:00PM,BAL,NYJ (-2),40.5,NYJ 21,"Clear, 56 F, 14 mph",58,63,+5,0,"$5,000",$0
+Garrett Grayson (NO - QB),Sun 1:00PM,@KC,NO (+7),51,NO 22,"Clear, 64 F, 10 mph",66,68,+2,0,"$5,000",$0
+Taylor Heinicke (MIN - QB),Sun 1:00PM,@PHI,MIN (-3),39,MIN 21,"Partly Cloudy, 58 F, 12 mph",60,70,+10,0,"$5,000",$0
+Jake Rudock (DET - QB),Sun 1:00PM,WAS,DET (+1),50,DET 25,Indoor,69,56,-13,0,"$5,000",$0
+Shaun Hill (MIN - QB),Sun 1:00PM,@PHI,MIN (-3),39,MIN 21,"Partly Cloudy, 58 F, 12 mph",74,40,-34,0,"$6,000",$0
+Tyler Bray (KC - QB),Sun 1:00PM,NO,KC (-7),51,KC 29,"Clear, 64 F, 10 mph",75,60,-15,0,"$5,000",$0
+Matt Schaub (ATL - QB),Sun 4:05PM,SD,ATL (-5.5),53,ATL 29,Indoor,76,39,-37,0,"$6,000",$0
+Nate Sudfeld (WAS - QB),Sun 1:00PM,@DET,WAS (-1),50,WAS 26,Indoor,77,55,-22,0,"$5,000",$0
+Brandon Allen (JAC - QB),Sun 1:00PM,OAK,JAC (-2),47,JAC 25,"Clear, 68 F, 8 mph",73,61,-12,0,"$5,000",$0
+Zach Mettenberger (PIT - QB),Sun 4:25PM,NE,PIT (+7.5),48.5,PIT 21,"Partly Cloudy, 64 F, 11 mph",72,62,-10,0,"$5,000",$0
+Jeff Driskel (CIN - QB),Sun 1:00PM,CLE,CIN (-11),46,CIN 29,"Clear, 60 F, 9 mph",68,59,-9,0,"$5,000",$0
+Cardale Jones (BUF - QB),Sun 1:00PM,@MIA,BUF (-2.5),45,BUF 24,"Clear, 78 F, 11 mph",70,58,-12,0,"$5,000",$0
+Christian Hackenberg (NYJ - QB),Sun 1:00PM,BAL,NYJ (-2),40.5,NYJ 21,"Clear, 56 F, 14 mph",55,65,+10,0,"$5,000",$0
+Connor Cook (OAK - QB),Sun 1:00PM,@JAC,OAK (+2),47,OAK 23,"Clear, 68 F, 8 mph",71,57,-14,0,"$5,000",$0
+Josh Woodrum (IND - QB),Sun 1:00PM,@TEN,IND (+3.5),48,IND 22,"Clear, 64 F, 6 mph",67,73,+6,0,"$5,000",$0
+Matt Cassel (TEN - QB),Sun 1:00PM,IND,TEN (-3.5),48,TEN 26,"Clear, 64 F, 6 mph",39,41,+2,0,"$6,000",$0
+Luke McCown (NO - QB),Sun 1:00PM,@KC,NO (+7),51,NO 22,"Clear, 64 F, 10 mph",38,75,+37,0,"$5,000",$0
+Trevone Boykin (SEA - QB),Sun 8:30PM,@ARI,SEA (+1),43.5,SEA 21,Indoor,40,37,-3,0,"$6,000",$0
+Scott Tolzien (IND - QB),Sun 1:00PM,@TEN,IND (+3.5),48,IND 22,"Clear, 64 F, 6 mph",41,50,+9,0,"$5,000",$0
+Ben Roethlisberger (PIT - QB),Sun 4:25PM,NE,PIT (+7.5),48.5,PIT 21,"Partly Cloudy, 64 F, 11 mph",42,4,-38,0,"$8,400",$0
+Charlie Whitehurst (CLE - QB),Sun 1:00PM,@CIN,CLE (+11),46,CLE 18,"Clear, 60 F, 9 mph",37,42,+5,0,"$6,000",$0
+Josh McCown (CLE - QB),Sun 1:00PM,@CIN,CLE (+11),46,CLE 18,"Clear, 60 F, 9 mph",36,26,-10,0,"$6,600",$0
+Nick Foles (KC - QB),Sun 1:00PM,NO,KC (-7),51,KC 29,"Clear, 64 F, 10 mph",32,34,+2,0,"$6,000",$0
+Brandon Weeden (HOU - QB),Mon 8:30PM,@DEN,HOU (+7.5),40.5,HOU 17,"Clear, 68 F, 3 mph",33,33,0,0,"$6,000",$0
+Tom Savage (HOU - QB),Mon 8:30PM,@DEN,HOU (+7.5),40.5,HOU 17,"Clear, 68 F, 3 mph",34,52,+18,0,"$5,000",$0
+Jake Heaps (SEA - QB),Sun 8:30PM,@ARI,SEA (+1),43.5,SEA 21,Indoor,35,54,+19,0,"$5,000",$0
+Chad Henne (JAC - QB),Sun 1:00PM,OAK,JAC (-2),47,JAC 25,"Clear, 68 F, 8 mph",43,48,+5,0,"$5,500",$0
+Matt McGloin (OAK - QB),Sun 1:00PM,@JAC,OAK (+2),47,OAK 23,"Clear, 68 F, 8 mph",44,46,+2,0,"$5,500",$0
+Dan Orlovsky (DET - QB),Sun 1:00PM,WAS,DET (+1),50,DET 25,Indoor,50,76,+26,0,"$5,000",$0
+Mike Glennon (TB - QB),Sun 4:05PM,@SF,TB (+1),45,TB 22,"Clear, 70 F, 5 mph",51,35,-16,0,"$6,000",$0
+E.J. Manuel (BUF - QB),Sun 1:00PM,@MIA,BUF (-2.5),45,BUF 24,"Clear, 78 F, 11 mph",52,51,-1,0,"$5,000",$0
+AJ McCarron (CIN - QB),Sun 1:00PM,CLE,CIN (-11),46,CIN 29,"Clear, 60 F, 9 mph",53,43,-10,0,"$5,900",$0
+Chase Daniel (PHI - QB),Sun 1:00PM,MIN,PHI (+3),39,PHI 18,"Partly Cloudy, 58 F, 12 mph",49,77,+28,0,"$5,000",$0
+Jacoby Brissett (NE - QB) IR,Sun 4:25PM,@PIT,NE (-7.5),48.5,NE 28,"Partly Cloudy, 64 F, 11 mph",48,36,-12,0,"$6,000",$0
+Austin Davis (DEN - QB),Mon 8:30PM,HOU,DEN (-7.5),40.5,DEN 24,"Clear, 68 F, 3 mph",45,45,0,0,"$5,500",$0
+Christian Ponder (SF - QB),Sun 4:05PM,TB,SF (-1),45,SF 23,"Clear, 70 F, 5 mph",46,49,+3,0,"$5,200",$0
+Colt McCoy (WAS - QB),Sun 1:00PM,@DET,WAS (-1),50,WAS 26,Indoor,47,44,-3,0,"$5,500",$0
+Jimmy Garoppolo (NE - QB),Sun 4:25PM,@PIT,NE (-7.5),48.5,NE 28,"Partly Cloudy, 64 F, 11 mph",54,38,-16,0,"$6,000",$0

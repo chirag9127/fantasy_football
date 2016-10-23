@@ -46,7 +46,8 @@ class Lineup(object):
 
     def __init__(self, all_players, prob):
         self.prob = prob
-        self.players = [all_players[p.name] for p in prob.variables() if p.varValue == 1]
+        self.players = [all_players[p.name]
+                        for p in prob.variables() if p.varValue == 1]
         self.players.sort(key=lambda x: x.name)
         self.string_players = ';'.join([p.name for p in self.players])
         self.players.sort(key=lambda x: POSITION_ORDERS[x.position])
@@ -84,9 +85,9 @@ def new_lp_problem(all_players):
     prob = LpProblem("Fanduel selection problem", LpMaximize)
     # add salary constraint
     prob += lpSum([item.variable * item.salary
-                   for item in all_players.values()]) <= 60000.0, "Salary constraint"
+                   for item in all_players.values()]) <= 60000.0, "Salary"
 
-    for position, num_pos in [('qb', 1), ('rb', 2), ('wr', 3), ('te', 1), ('def', 1), ('k', 1)]:
+    for position, num_pos in POSITIONS:
         prob += lpSum([player.variable for player in all_players.values()
                        if player.position == position]) == num_pos,\
                 "{} constraint".format(position)
@@ -180,4 +181,4 @@ def generate_optimal_lineup(week, slatefile):
         print p, d2[p]
 
 
-generate_optimal_lineup('week7', 'fanduel_sun_mon.csv')
+generate_optimal_lineup('week7', 'fanduel_sun_main.csv')

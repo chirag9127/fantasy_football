@@ -2,14 +2,50 @@ import csv
 import json
 
 
+team_conversion = {
+    'SF': 'SFO',
+    'TB': 'TBB',
+    'SD': 'SDC',
+    'LA': 'LAR',
+    'KC': 'KCC',
+    'GB': 'GBP',
+    'NO': 'NOS',
+    'NE': 'NEP'
+}
+
+
 def load_projections(week, player_type):
     projections = {}
+    fantasy_pros_projections = load_fantasy_pros_projections(
+        week, player_type)
     with open(
             '../resources/{0}/fanduel_{1}.csv'.format(week, player_type)) as f:
         reader = csv.DictReader(f)
         for row in reader:
             key = '{0}_{1}'.format(
                 row['player'].replace(' ', '_'), row['team'])
+            projections[key] = row
+            if key in fantasy_pros_projections:
+                projections[key]['fantasy_pros'] = \
+                    fantasy_pros_projections[key]
+    return projections
+
+
+def load_fantasy_pros_projections(week, player_type):
+    projections = {}
+    with open(
+            '../resources/{0}/fantasy_pros/{1}.csv'.format(
+                week, player_type)) as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            player = row['Player ']
+            player = player.split('(')
+            player_name = player[0].strip()
+            team = player[1].split('-')[0].strip()
+            if team in team_conversion:
+                team = team_conversion[team]
+            key = '{0}_{1}'.format(
+                player_name.replace(' ', '_'), team)
             projections[key] = row
     return projections
 
@@ -44,18 +80,6 @@ def load_all_projections(week):
             all_projections[key]['consistency'] = consistency_projections[key]
 
     return all_projections
-
-
-team_conversion = {
-    'SF': 'SFO',
-    'TB': 'TBB',
-    'SD': 'SDC',
-    'LA': 'LAR',
-    'KC': 'KCC',
-    'GB': 'GBP',
-    'NO': 'NOS',
-    'NE': 'NEP'
-}
 
 
 def load_eligible_players_for_slate(week, slatefile):
